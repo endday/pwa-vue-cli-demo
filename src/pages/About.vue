@@ -4,9 +4,15 @@
     </div>
 </template>
 <script>
-export default {
+const a = [
+    'a',
+    'b',
+    'c'
+]
 
-}
+const b = a.includes('a')
+console.log(b)
+export default {}
 </script>
 <style scoped lang="scss">
 

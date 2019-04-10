@@ -3,6 +3,7 @@ const fs = require('fs')
 const argv = require('minimist')(process.argv.slice(2))
 const projectName = path.resolve(__dirname).split(path.sep).pop()
 const env = process.env.NODE_ENV
+const isDev = env === 'development'
 const publicPath = process.env.VUE_APP_STATIC_URL
 const outputDir = `dist/${projectName}/`
 const productionSourceMap = !!argv.sourceMap
@@ -25,13 +26,13 @@ module.exports = {
                 args[0].template = path.join(__dirname, `src/${indexPath}`)
                 return args
             })
-        if (env === 'development') {
+        if (isDev) {
             config.plugins.delete('preload')
             config.plugins.delete('prefetch')
         }
     },
     configureWebpack: config => {
-        if (env === 'development') {
+        if (isDev) {
             config.output.filename = 'js/[name].js'
             config.output.chunkFilename = 'js/[name].js'
         }
