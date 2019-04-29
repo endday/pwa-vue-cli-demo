@@ -12,8 +12,10 @@ module.exports = {
     // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
     // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
     'plugin:vue/essential',
+    'plugin:vue/strongly-recommended',
     // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-    'standard'
+    'standard',
+    'plugin:muc/recommended'
   ],
   // required to lint *.vue files
   plugins: [
@@ -24,6 +26,35 @@ module.exports = {
     // allow async-await
     'generator-star-spacing': 'off',
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'spaced-comment': 'off',
+    'vue/max-attributes-per-line': ['error', {
+      'singleline': 3, //vue文件中单行允许的最大属性，根据习惯项目自行配置
+      'multiline': {
+        'max': 1,
+        'allowFirstLine': false
+      }
+    }],
+    'vue/html-indent': ['error', 2, {
+      'attribute': 1,
+      'baseIndent': 1,
+      'closeBracket': 0,
+      'alignAttributesVertically': true,
+      'ignores': []
+    }],
+    'vue/html-self-closing': ['error', {
+      'html': {
+        'void': 'always',
+        'normal': 'never',
+        'component': 'always'
+      },
+      'svg': 'always',
+      'math': 'always'
+    }],
+    'vue/attribute-hyphenation': ['error', 'never', {
+      'ignore': []
+    }],
+    'prefer-promise-reject-errors': 'off',
+    'muc/promise-need-catch': 'off'
   }
 }
