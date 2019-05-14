@@ -2,7 +2,10 @@
   "name": "vue-cli-template",
   "version": "0.1.1",
   "private": true,
-  "dependenceType": "local",
+  "xysConfig": {
+    "dependenceType": "local",
+    "viewPath": ""
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "dist": "vue-cli-service build",
@@ -16,7 +19,6 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.3",
     "axios": "^0.16.2",
-    "babel-polyfill": "^6.26.0",
     "vue": "^2.5.21",
     "vue-loader": "^15.7.0",
     "vue-router": "^3.0.1",

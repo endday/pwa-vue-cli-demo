@@ -7,5 +7,9 @@
 export default {}
 </script>
 <style scoped lang="scss">
-
+  .about {
+    h1 {
+      font-size: 24px;
+    }
+  }
 </style>

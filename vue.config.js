@@ -1,7 +1,6 @@
 const path = require('path')
 const fs = require('fs')
 const argv = require('minimist')(process.argv.slice(2))
-const productionSourceMap = !!argv.sourceMap
 const isDev = process.env.NODE_ENV === 'development'
 const srcFiles = fs.readdirSync(path.resolve(__dirname, 'src/'))
 // 项目名称
@@ -21,7 +20,7 @@ module.exports = {
   publicPath: `${publicPath}/${projectName}/`,
   lintOnSave: false,
   runtimeCompiler: true,
-  productionSourceMap,
+  productionSourceMap: !!argv.sourceMap,
   crossorigin: 'anonymous',
   chainWebpack: config => {
     config.plugin('html')
