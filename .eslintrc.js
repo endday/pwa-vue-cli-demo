@@ -54,6 +54,9 @@ module.exports = {
     'vue/attribute-hyphenation': ['error', 'never', {
       'ignore': []
     }],
+    'vue/html-closing-bracket-spacing': ['error', {
+      'selfClosingTag': 'never'
+    }],
     'prefer-promise-reject-errors': 'off',
     'muc/promise-need-catch': 'off'
   }

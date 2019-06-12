@@ -18,7 +18,7 @@ module.exports = {
   outputDir: outputDir,
   indexPath: indexPath,
   publicPath: `${publicPath}/${projectName}/`,
-  lintOnSave: false,
+  lintOnSave: process.env.NODE_ENV !== 'production',
   runtimeCompiler: true,
   productionSourceMap: !!argv.sourceMap,
   crossorigin: 'anonymous',
