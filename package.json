@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-template",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "xysConfig": {
     "dependenceType": "local",
@@ -9,7 +9,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "dist": "vue-cli-service --slient build",
-    "dev": "vue-cli-service build --watch --fix --mode development ",
+    "dev": "vue-cli-service build --watch --mode development ",
     "sbeta": "vue-cli-service build --slient --mode development",
     "sgamma": "npm run sbeta",
     "sourceMap": "vue-cli-service build --slient --sourceMap",
