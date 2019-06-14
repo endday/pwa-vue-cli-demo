@@ -8,11 +8,11 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "dist": "vue-cli-service build",
-    "dev": "vue-cli-service build --watch --mode development ",
-    "sbeta": "vue-cli-service build --mode development",
+    "dist": "vue-cli-service --slient build",
+    "dev": "vue-cli-service build --watch --fix --mode development ",
+    "sbeta": "vue-cli-service build --slient --mode development",
     "sgamma": "npm run sbeta",
-    "sourceMap": "vue-cli-service build --sourceMap",
+    "sourceMap": "vue-cli-service build --slient --sourceMap",
     "lint": "vue-cli-service lint",
     "report": "vue-cli-service build --report"
   },
