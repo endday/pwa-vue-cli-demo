@@ -1,0 +1,22 @@
+cache:
+  key: '$NODE_MODULES_VERSION'
+  paths:
+    - node_modules/
+
+stages:
+  - build
+
+build:
+  stage: build
+  cache:
+    paths:
+      - node_modules/
+
+  script:
+    - npm install  --silent
+    - npm run build
+
+  only:
+    - master
+    
+  when: manual
