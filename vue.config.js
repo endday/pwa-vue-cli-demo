@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const argv = require('minimist')(process.argv.slice(2))
-const slient = argv.slient
+const silent = argv.silent
 const isDev = process.env.NODE_ENV === 'development'
 const srcFiles = fs.readdirSync(path.resolve(__dirname, 'src/'))
 // 项目名称
@@ -35,7 +35,7 @@ module.exports = {
       config.plugins.delete('preload')
       config.plugins.delete('prefetch')
     }
-    if (slient) {
+    if (silent) {
       config.plugins.delete('progress')
     }
   },
