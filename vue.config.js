@@ -14,6 +14,13 @@ const outputDir = `dist/${projectName}/`
 const indexPath = srcFiles.find(file => path.extname(file) === '.html')
 // 入口路径 (相对路径)
 const entryPath = './src/main.js'
+const { InjectManifest } = require('workbox-webpack-plugin')
+const webpack = require('webpack')
+
+function getVersion () {
+  var d = new Date()
+  return '' + d.getFullYear() + d.getMonth() + 1 + d.getDate() + d.getHours() + d.getMinutes() + d.getSeconds()
+}
 
 module.exports = {
   outputDir: outputDir,
@@ -45,5 +52,16 @@ module.exports = {
       config.output.filename = 'js/[name].js'
       config.output.chunkFilename = 'js/[name].js'
     }
+    config.plugins.push(
+      new InjectManifest({
+        swSrc: './src/service-worker.js',
+        importsDirectory: 'js',
+        importWorkboxFrom: 'disabled', // 不使用谷歌workerbox的cdn
+        exclude: [/\.map$/, /^manifest.*\.js$/, /\.html$/]
+      }),
+      new webpack.DefinePlugin({
+        SERVICE_WORKER_VERSION: getVersion()
+      })
+    )
   }
 }
