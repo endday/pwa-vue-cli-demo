@@ -1,11 +1,7 @@
 {
-  "name": "vue-cli-template",
+  "name": "pwa-vue-cli-demo",
   "version": "0.1.2",
   "private": true,
-  "xysConfig": {
-    "dependenceType": "local",
-    "viewPath": ""
-  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "dist": "vue-cli-service build",
@@ -22,10 +18,8 @@
     "vue": "^2.5.21",
     "vue-loader": "^15.7.0",
     "vue-router": "^3.0.1",
-    "vue-xys-tongji": "^1.1.3",
     "vuex": "^3.0.1",
-    "workbox-webpack-plugin": "^4.3.1",
-    "xys-monitor": "^1.0.6"
+    "workbox-webpack-plugin": "^4.3.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.5",

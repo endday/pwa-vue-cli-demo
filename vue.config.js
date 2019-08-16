@@ -9,11 +9,6 @@ const isDev = process.env.NODE_ENV === 'development'
 const srcFiles = fs.readdirSync(path.resolve(__dirname, 'src/'))
 // 项目名称
 const projectName = path.resolve(__dirname).split(path.sep).pop()
-// 公共地址前缀 根据环境配置 在.env.development 和 .env.production 中配置
-const publicPath = process.env.VUE_APP_STATIC_URL
-// 生产环境构建文件的目录
-// const outputDir = 'dist'
-const outputDir = `dist/${projectName}/`
 // 页面片路径
 const indexPath = srcFiles.find(file => path.extname(file) === '.html')
 // 入口路径 (相对路径)
@@ -25,10 +20,9 @@ function getVersion () {
 }
 
 module.exports = {
-  outputDir: outputDir,
+  outputDir: 'dist/',
   indexPath: indexPath,
-  // publicPath: '/',
-  publicPath: `${publicPath}/${projectName}/`,
+  publicPath: '/',
   lintOnSave: process.env.NODE_ENV !== 'production',
   runtimeCompiler: true,
   productionSourceMap: !!argv.sourceMap,
