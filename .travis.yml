@@ -1,0 +1,22 @@
+language: node_js
+node_js: stable
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules
+before_install:
+
+install:
+  - npm i
+script:
+  - npm run build
+after_script:
+  - cd dist
+  - git init
+  - git config user.name "endday" --{GitHub账户名称}
+  - git config user.email "845426454@qq.com" --{Github账户邮箱}
+  - git add .
+  - git commit -m "deploy project"
+  - git push -f git@github.com:endday/pwa-vue-cli-demo.git master:gh-pages
