@@ -1,6 +1,9 @@
 const path = require('path')
 const fs = require('fs')
 const argv = require('minimist')(process.argv.slice(2))
+const { InjectManifest } = require('workbox-webpack-plugin')
+const webpack = require('webpack')
+
 const quiet = argv.quiet
 const isDev = process.env.NODE_ENV === 'development'
 const srcFiles = fs.readdirSync(path.resolve(__dirname, 'src/'))
@@ -9,22 +12,22 @@ const projectName = path.resolve(__dirname).split(path.sep).pop()
 // 公共地址前缀 根据环境配置 在.env.development 和 .env.production 中配置
 const publicPath = process.env.VUE_APP_STATIC_URL
 // 生产环境构建文件的目录
+// const outputDir = 'dist'
 const outputDir = `dist/${projectName}/`
 // 页面片路径
 const indexPath = srcFiles.find(file => path.extname(file) === '.html')
 // 入口路径 (相对路径)
 const entryPath = './src/main.js'
-const { InjectManifest } = require('workbox-webpack-plugin')
-const webpack = require('webpack')
 
 function getVersion () {
-  var d = new Date()
+  let d = new Date()
   return '' + d.getFullYear() + d.getMonth() + 1 + d.getDate() + d.getHours() + d.getMinutes() + d.getSeconds()
 }
 
 module.exports = {
   outputDir: outputDir,
   indexPath: indexPath,
+  // publicPath: '/',
   publicPath: `${publicPath}/${projectName}/`,
   lintOnSave: process.env.NODE_ENV !== 'production',
   runtimeCompiler: true,
@@ -60,7 +63,8 @@ module.exports = {
         exclude: [/\.map$/, /^manifest.*\.js$/, /\.html$/]
       }),
       new webpack.DefinePlugin({
-        SERVICE_WORKER_VERSION: getVersion()
+        __SW_VERSION__: getVersion(),
+        __PROJECT_NAME__: JSON.stringify(projectName)
       })
     )
   }

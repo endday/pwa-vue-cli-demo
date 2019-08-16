@@ -24,8 +24,14 @@ workbox.clientsClaim()
 workbox.precaching.precacheAndRoute(self.__precacheManifest || [])
 
 self.addEventListener('message', event => {
-  if (event.data === 'skipWaiting') {
-    self.skipWaiting()
+  const replyPort = event.ports[0]
+  const message = event.data
+  if (replyPort && message && message.type === 'skip-waiting') {
+    event.waitUntil(
+      self.skipWaiting()
+        .then(() => replyPort.postMessage({ error: null }))
+        .catch(error => replyPort.postMessage({ error }))
+    )
   }
 })
 
@@ -54,24 +60,3 @@ self.addEventListener('message', event => {
         ]
     })
 );*/
-
-workbox.routing.registerRoute(
-  /^https:\/\/dev.xinhulu.com\/zhangyi\/index/i,
-  workbox.strategies.networkFirst({
-    cacheName: 'pwa-static-cache'
-  })
-)
-
-workbox.routing.registerRoute(
-  /^https:\/\/dev.xinhulu.com\/static/i,
-  workbox.strategies.staleWhileRevalidate({
-    cacheName: 'pwa-static-cache'
-  })
-)
-
-workbox.routing.registerRoute(
-  /^https:\/\/sslstatic.xiaoyusan.com/i,
-  workbox.strategies.staleWhileRevalidate({
-    cacheName: 'pwa-static-cache'
-  })
-)
