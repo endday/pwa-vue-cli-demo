@@ -22,7 +22,7 @@ function getVersion () {
 module.exports = {
   outputDir: 'dist/',
   indexPath: indexPath,
-  publicPath: '/',
+  publicPath: `${projectName}/`,
   lintOnSave: process.env.NODE_ENV !== 'production',
   runtimeCompiler: true,
   productionSourceMap: !!argv.sourceMap,
