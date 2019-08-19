@@ -43,7 +43,7 @@ function setFailVersion () {
 
 if (getFailVersion() !== version && 'serviceWorker' in navigator) {
   // 如果是新的版本，那就尝试注册安装
-  navigator.serviceWorker.register('/zhangyi/sw?version=' + version) // eslint-disable-line
+  navigator.serviceWorker.register('/service-worker.js?version=' + version) // eslint-disable-line
     .then(function (reg) {
       if (reg.waiting) {
         emitUpdate()
