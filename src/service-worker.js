@@ -11,7 +11,7 @@ workbox.setConfig({
 
 /* globals workbox */
 workbox.core.setCacheNameDetails({
-  prefix: 'pwa-test-cache',
+  prefix: 'pwa-cache',
   suffix: 'v1',
   precache: 'install-time',
   runtime: 'run-time',
@@ -34,6 +34,13 @@ self.addEventListener('message', event => {
     )
   }
 })
+
+workbox.routing.registerRoute(
+  /^https:\/\/endday.github.io\/pwa-vue-cli-demo\//i,
+  workbox.strategies.networkFirst({
+    cacheName: 'pwa-static-cache'
+  })
+)
 
 /**
  * example runningCache with api
