@@ -64,6 +64,8 @@ export default {
       if (!worker) {
         return Promise.resolve()
       }
+      // 这里是参考vue-press的写法
+      // 利用MessageChannel返回一个promise
       return new Promise((resolve, reject) => {
         const channel = new MessageChannel()
         channel.port1.onmessage = (event) => {

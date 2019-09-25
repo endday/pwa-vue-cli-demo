@@ -4,7 +4,6 @@ const argv = require('minimist')(process.argv.slice(2))
 const { InjectManifest } = require('workbox-webpack-plugin')
 const webpack = require('webpack')
 
-const quiet = argv.quiet
 const isDev = process.env.NODE_ENV === 'development'
 const srcFiles = fs.readdirSync(path.resolve(__dirname, 'src/'))
 // 项目名称
@@ -39,9 +38,6 @@ module.exports = {
       config.plugins.delete('preload')
       config.plugins.delete('prefetch')
     }
-    if (quiet) {
-      config.plugins.delete('progress')
-    }
   },
   configureWebpack: config => {
     config.entry.app[0] = entryPath
@@ -51,7 +47,7 @@ module.exports = {
     }
     config.plugins.push(
       new InjectManifest({
-        swSrc: './src/service-worker.js',
+        swSrc: './src/util/service-worker.js',
         importsDirectory: 'js',
         importWorkboxFrom: 'disabled', // 不使用谷歌workerbox的cdn
         exclude: [/\.map$/, /^manifest.*\.js$/, /\.html$/]

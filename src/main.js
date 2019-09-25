@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './route'
-import './sw-register'
+import './util/sw-register'
 
 Vue.config.productionTip = false
 
