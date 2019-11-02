@@ -1,0 +1,13 @@
+{
+  "short_name": "短名称",
+  "name": "这是一个完整名称",
+  "icons": [
+    {
+      "src": "/pwa-vue-cli-demo/img/msapplication-icon-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    }
+  ],
+  "start_url": "/pwa-vue-cli-demo/index",
+  "display": "fullscreen"
+}
